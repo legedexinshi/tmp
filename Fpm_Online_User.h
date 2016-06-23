@@ -109,7 +109,7 @@ cout<<"begin slow read"<<endl;
 		int64_t newId = _lastId;
 		if (ret.size() > 0)
 			newId = toDig(ret[ret.size()-1][0]);
-if(ret.size()>0)cout<<"User  LAST TIME IS   "<<toDig(ret[ret.size()-1][4])<<endl;
+//if(ret.size()>0)cout<<"User  LAST TIME IS   "<<toDig(ret[ret.size()-1][4])<<endl;
 		return newId;
 	}
 	FPAnswerPtr getInfos (const FPReaderPtr args, const FPQuestPtr quest, const ConnectionInfo& ci)

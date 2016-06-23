@@ -147,8 +147,8 @@ class Fpm_Online_Time
 		}
 		
 		if (ret.size() > 0) _lastId = toDig(ret[ret.size()-1][0]);
-if(ret.size()>0&&flag==1)cout<<"Time  LAST TIME IS   "<<toDig(ret[ret.size()-1][4])<<endl;
-if(ret.size()>0&&flag==2)cout<<"Dau  LAST TIME IS   "<<toDig(ret[ret.size()-1][3])<<endl;
+//if(ret.size()>0&&flag==1)cout<<"Time  LAST TIME IS   "<<toDig(ret[ret.size()-1][4])<<endl;
+//if(ret.size()>0&&flag==2)cout<<"Dau  LAST TIME IS   "<<toDig(ret[ret.size()-1][3])<<endl;
 	}
 
 	FPAnswerPtr getInfos (const FPReaderPtr args, const FPQuestPtr quest, const ConnectionInfo& ci)

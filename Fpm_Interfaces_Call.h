@@ -141,7 +141,7 @@ cout<<"begin slow read"<<endl;
         int64_t newId = _lastId;
         if (ret.size() > 0)
             newId = toDig(ret[ret.size()-1][0]);
-if(ret.size()>0)cout<<"Statisician  LAST TIME IS   "<<toDig(ret[ret.size()-1][indexMap["insert_time"]])<<endl;
+//if(ret.size()>0)cout<<"Statisician  LAST TIME IS   "<<toDig(ret[ret.size()-1][indexMap["insert_time"]])<<endl;
         return newId;
     }
 

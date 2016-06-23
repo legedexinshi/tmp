@@ -108,7 +108,7 @@ cout<<"begin slow read"<<endl;
 		int64_t newId = _lastId;
 		if (ret.size() > 0)
 			newId = toDig(ret[ret.size()-1][0]);
-if(ret.size()>0)cout<<"Gated  LAST TIME IS   "<<toDig(ret[ret.size()-1][3])<<endl;
+//if(ret.size()>0)cout<<"Gated  LAST TIME IS   "<<toDig(ret[ret.size()-1][3])<<endl;
 		return newId;
 	}
 
