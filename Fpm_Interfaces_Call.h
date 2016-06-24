@@ -46,6 +46,7 @@ class Fpm_Interfaces_Call
     {
 	_hashChar = 1;
 	_hash.clear();
+	indexMap.clear();
 	_infosMap.init();
         _interfaceSet = set<string> {"remoteGroupNote", "remoteGroupNote", "remoteGroupMessage", "sendNotes", "sendNote", "getOnlineUsers", "kickout", "sendGroupNote", "sendBroadcastMessage", "sendGroupMessage", "sendMessages", "sendMessage", "keepLive", "logout", "onlineStatus", "sendBroadcastNote", "login" };
         _gap = 5;

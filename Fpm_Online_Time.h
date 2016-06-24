@@ -142,7 +142,7 @@ class Fpm_Online_Time
 				string region = elem[1], pid = elem[2], date_id = elem[3], num = elem[4];
 				setted(region, _regionSet);
 				setted(pid, _projectSet);
-				_dau[date_id][region][pid] += toDig(num);
+				_dau[date_id][region][pid] = toDig(num);
 			}
 		}
 		
@@ -178,7 +178,7 @@ cout<<project<<' '<<region<<' '<<split<<' '<<from<<' '<<to<<endl;
 		if (split == "no")
 		{
 			vector<int64_t> ret;
-			for (auto iter = _data.lower_bound(from); iter != _data.end() && iter->first <= to; iter++)
+			for (auto iter = _dau.lower_bound(from); iter != _dau.end() && iter->first <= to; iter++)
 			{
 				int64_t totalDau = 0; 
 				for (auto Project: projectList)
@@ -201,7 +201,7 @@ cout<<project<<' '<<region<<' '<<split<<' '<<from<<' '<<to<<endl;
 			{
 				vector<int64_t> ret;
 				int64_t totalDau; 
-				for (auto iter = _data.lower_bound(from); iter != _data.end() && iter->first <= to; iter++)
+				for (auto iter = _dau.lower_bound(from); iter != _dau.end() && iter->first <= to; iter++)
 				{ 
 					totalDau = _dau[iter->first][region][Project];
 					if (totalDau > 0)
