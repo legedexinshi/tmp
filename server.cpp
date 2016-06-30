@@ -2,6 +2,7 @@
 #include "Fpm_Online_Time.h"
 #include "Fpm_Gated_Connection.h"
 #include "Fpm_Interfaces_Call.h"
+#include "Fpm_Time_Use.h"
 
 using namespace std;
 using namespace fpnn;
@@ -14,6 +15,7 @@ class QuestProcessor: public IQuestProcessor
 	Fpm_Gated_Connection fpmGatedConnection;
 	Fpm_Online_Time fpmOnlineTime;
 	Fpm_Interfaces_Call fpmInterfacesCall;
+	Fpm_Time_Use fpmTimeUse;
 
  public:
 
@@ -47,6 +49,10 @@ class QuestProcessor: public IQuestProcessor
 			else if (type == "Infos") return fpmInterfacesCall.getInfos (args, quest, ci);
 			else printf ("no such type!\n");
 		}
+		else if (table == "Fpm_Time_Use")
+		{
+			return fpmTimeUse.query (args, quest, ci);
+		}
 		printf("No such table!\n");
 		return NULL;
 	}
@@ -59,6 +65,7 @@ class QuestProcessor: public IQuestProcessor
 		fpmOnlineUser.init (ip, port);
 		fpmGatedConnection.init (ip, port);
 		fpmOnlineTime.init (ip, port);
+		fpmTimeUse.init (ip, port);
 		registerMethod("queryCache", &QuestProcessor::queryCache);
 	}
 

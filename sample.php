@@ -1,18 +1,28 @@
 <?php
 require_once ('../php/FpnnClient.php');
 
-$client = new \Infra\Fpnn\FpnnClient ("127.0.0.1", 7089, 60000);
-
+$client = new \Infra\Fpnn\FpnnClient ("127.0.0.1", 13561, 60000);
 $choose = fgets(STDIN);
 
+if ($choose == 8)
+{	// time use
+	$answer = $client->sendQuest ("queryCache", array(
+	    "table" => "Fpm_Time_Use",
+	    "region" => "RTM_Ireland",
+	    "type" => "ALL",
+	    //"type" => "1",
+	    "from"  => "1466268250",
+	    "to"    => "1466368250",
+	));
+}
 if ($choose == 0)
 {	//  get region-ip or region-project infos
 	//  return region-project only when table == Interfaces_Call 
 	$answer = $client->sendQuest ("queryCache", array(
 	    //"table" => "Fpm_Online_Time",
-	    //"table" => "Fpm_Online_User",
+	    "table" => "Fpm_Online_User",
 	    //"table" => "Fpm_Gated_Connection",
-	    "table" => "Fpm_Interfaces_Call",
+	    //"table" => "Fpm_Interfaces_Call",
 	    "type" => "Infos"
 	));
 }
@@ -37,11 +47,12 @@ if ($choose == 2)
 	 // split = "no", 输出region里某个project 或者所有project 的Dau
 	$answer = $client->sendQuest ("queryCache", array(
 	    "table" => "Fpm_Online_Time",
-	    "from"  => "20160525",
-	    "to"    => "20160529",
-	    "region" => "RTM-Ireland",
-	    //"project" => "30005",
-	    "project" => "ALL",
+	    "from"  => "20160529",
+	    "to"    => "20160628",
+	    "region" => "RTM-Singapore",
+	    //"region" => "ALL",
+	    "project" => "70001",
+	    //"project" => "ALL",
 	    "type" => "RTMDau",
 	    //"split" => "yes"
 	    "split" => "no"
@@ -51,13 +62,13 @@ if ($choose == 3)
 {	    // Online User
 	$answer = $client->sendQuest ("queryCache", array(
 	    "table" => "Fpm_Online_User",
-	    "from"  => "1464961600",
-	    "to"    => "1464962800",
-	    "region" => "RTM-Singapore",
+	    "from"  => "1464710400",
+	    "to"    => "1566743920",
+	    "region" => "ALL",
 	    //"region" => "ALL",
-	    //"ip" => "ALL",
-	    "ip" => "10.15.156.25",
-	    "split" => "yes"
+	    "ip" => "ALL",
+	    //"ip" => "10.15.156.25",
+	    "split" => "no"
 	    //"split" => "no"
 	));
 }
@@ -109,9 +120,9 @@ if ($choose == 7)
 	    "from"  => "1465920000",
 	    "to"    => "1466524800",
 	    "type"  => "QPSData",
-	    "region" => "RTM-Ireland",
-	    //"project" => "ALL"
-	    "project" => "30013"
+	    "region" => "RTM-SouthAmerica",
+	    "project" => "ALL"
+	    //"project" => "30013"
 	));
 }
 

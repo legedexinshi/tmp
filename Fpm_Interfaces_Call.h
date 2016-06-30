@@ -50,7 +50,7 @@ class Fpm_Interfaces_Call
 	_infosMap.init();
         _interfaceSet = set<string> {"remoteGroupNote", "remoteGroupNote", "remoteGroupMessage", "sendNotes", "sendNote", "getOnlineUsers", "kickout", "sendGroupNote", "sendBroadcastMessage", "sendGroupMessage", "sendMessages", "sendMessage", "keepLive", "logout", "onlineStatus", "sendBroadcastNote", "login" };
         _gap = 5;
-        _maxDay = Setting::getInt("Cache.Max.Day", 30);
+        _maxDay = Setting::getInt("Cache.Max.Day.InterfacesCall", 30);
         _sleepSecond = sleepSecond;
         _lastId = _willExit = 0;
         _dbproxy = TCPClient::createClient(ip, port);

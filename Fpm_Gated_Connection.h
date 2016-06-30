@@ -33,7 +33,7 @@ class Fpm_Gated_Connection
 	{
 		_infosMap.init();
 		_gap = 5;
-		_maxDay = Setting::getInt("Cache.Max.Day", 30);
+		_maxDay = Setting::getInt("Cache.Max.Day.GatedConnection", 30);
 		_sleepSecond = sleepSecond; 
 		_lastId = _willExit = 0;
 		_dbproxy = TCPClient::createClient(ip, port);

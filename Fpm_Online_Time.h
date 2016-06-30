@@ -35,7 +35,7 @@ class Fpm_Online_Time
 	void init (string ip, int64_t port, int64_t sleepSecond = 70)
 	{
 		_infosMap.init();
-		_maxDay = Setting::getInt("Cache.Max.Day", 30);
+		_maxDay = Setting::getInt("Cache.Max.Day.OnlineTime", 30);
 		_sleepSecond = sleepSecond; 
 		_lastId = _willExit = 0;
 		_dbproxy = TCPClient::createClient(ip, port);
@@ -164,6 +164,7 @@ class Fpm_Online_Time
 		string split = args->getString ("split", "no");
 		string from = args->wantString ("from");
 		string to = args->wantString ("to");
+		if (region == "ALL") split = "no";
 
 cout<<project<<' '<<region<<' '<<split<<' '<<from<<' '<<to<<endl;
 
@@ -175,24 +176,33 @@ cout<<project<<' '<<region<<' '<<split<<' '<<from<<' '<<to<<endl;
 		else 
 			projectList.insert(project);
 
+		set <string> regionList;
+		if (region == "ALL")
+			regionList = _regionSet;
+		else 
+			regionList.insert(region);
+
 		if (split == "no")
 		{
-			vector<int64_t> ret;
-			for (auto iter = _dau.lower_bound(from); iter != _dau.end() && iter->first <= to; iter++)
+			for (auto Region: regionList)
 			{
-				int64_t totalDau = 0; 
-				for (auto Project: projectList)
-				{ 
-					totalDau += _dau[iter->first][region][Project];
-				}
-				if (totalDau > 0)
+				vector<int64_t> ret;
+				for (auto iter = _dau.lower_bound(from); iter != _dau.end() && iter->first <= to; iter++)
 				{
-					ret.push_back(toDig(iter->first));
-					ret.push_back(totalDau);
+					int64_t totalDau = 0; 
+					for (auto Project: projectList)
+					{ 
+						totalDau += _dau[iter->first][Region][Project];
+					}
+					if (totalDau > 0)
+					{
+						ret.push_back(toDig(iter->first));
+						ret.push_back(totalDau);
+					}
 				}
+				if (ret.size() > 0)
+					tmpMap[Region] = ret;
 			}
-			if (ret.size() > 0)
-				tmpMap[region] = ret;
 			return writeAnswer (tmpMap, quest);
 		}
 		else 
